@@ -10,6 +10,8 @@ use crate::json_path::JSONPath;
 use crate::predicate::error::PredicateError;
 use crate::{FirstOrder, PredicateImpl};
 
+/// The "undefined" predicate evaluates as true if the referenced element does
+/// not exist within the target context.
 #[derive(Debug, Builder, Clone, PartialEq, Eq)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Undefined {

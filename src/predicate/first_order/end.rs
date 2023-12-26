@@ -12,6 +12,9 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "ends" predicate evaluates as true if the referenced element is defined
+/// and has a value whose string representation ends with the exact sequence of
+/// characters given by the predicate object's "value" member.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct End {

@@ -2,6 +2,8 @@ use std::error::Error;
 
 use crate::json_path::{JSONPath, JSONPathError};
 
+/// The context to run the evaluation, you can have an empty context with
+/// `PredicateContext::default()`.
 #[derive(Default, Clone, Debug)]
 pub struct PredicateContext {
     location: Option<JSONPath>,

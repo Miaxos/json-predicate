@@ -12,6 +12,12 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "in" predicate evaluates as true if the referenced element specifies a
+/// value exactly equal to one of the members of a JSON array provided by the
+/// predicate's "value" member.  Equality is determined following the sames
+/// rules specified for the JSON Patch "test" operation in [RFC6901](https://datatracker.ietf.org/doc/html/rfc6901),
+/// Section 4.6, with one exception given for optional case-insensitive
+/// comparisons.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct In {

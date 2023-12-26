@@ -95,4 +95,9 @@ pub trait PredicateImpl {
     /// you have to assume it's a false result and you'll also have more information about why it
     /// didn't validate.
     fn evaluate(&self, data: &Value, ctx: PredicateContext) -> Result<bool, PredicateError>;
+
+    /// Evaluate the predicate against the provided JSON
+    fn test(&self, data: &Value, ctx: PredicateContext) -> bool {
+        self.evaluate(data, ctx).unwrap_or(false)
+    }
 }

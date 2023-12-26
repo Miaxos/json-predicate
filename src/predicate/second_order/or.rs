@@ -13,6 +13,8 @@ use crate::Predicate;
 
 use super::SecondOrder;
 
+/// The "or" predicate evaluates as "true" if at least one of it's contained
+/// set of predicate operations evaluate as "true".
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Or {

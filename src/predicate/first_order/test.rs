@@ -12,6 +12,12 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The JSON Patch "test" operation, as defined by [RFC6902, Section 4.6](https://datatracker.ietf.org/doc/html/rfc6902#section-4.6),
+/// can be used as a First Order Predicate operation.
+/// It evaluates as true if the referenced element exists and specifies a value
+/// that is exactly equal to that provided by the predicate's "value" member.
+/// The rules for evaluating equality are identical to those defined within [RFC6902, Section 4.6](https://datatracker.ietf.org/doc/html/rfc6902#section-4.6),
+/// with one exception given for optional case-insensitive comparisons.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Test {

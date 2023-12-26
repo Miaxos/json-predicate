@@ -14,6 +14,9 @@ use crate::regex::Regex;
 
 use super::FirstOrder;
 
+/// The "matches" predicate evaluates as true if the referenced element is
+/// defined and has a value whose completely string representation matches the
+/// regular expression provided by the predicate object's "value" member.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Matches {

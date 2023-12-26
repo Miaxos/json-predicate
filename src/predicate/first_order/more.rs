@@ -12,6 +12,9 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "more" predicate evaluates as true if the referenced element is defined
+/// and specifies a number whose value is greater than that specified by the
+/// predicate object's "value" member.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct More {

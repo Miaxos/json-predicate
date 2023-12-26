@@ -16,6 +16,22 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "type" predicate evaluates as true if the referenced element exists and
+/// specifies a value whose value type is equal to that specified by the
+/// predicate's "value" member.
+/// The "value" member MUST specify one of:
+/// - "number"
+/// - "string"
+/// - "boolean"
+/// - "object"
+/// - "array"
+/// - "null"
+/// - "undefined"
+/// - "date"
+/// - "date-time"
+/// - "time"
+/// - "lang"
+/// - "lang-range"
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Type {

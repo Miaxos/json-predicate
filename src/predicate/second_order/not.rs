@@ -13,6 +13,8 @@ use crate::Predicate;
 
 use super::SecondOrder;
 
+/// The "not" predicate evaluates as "true" if all of it's contained set of
+/// predicate operations evaluate as "false".
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Not {

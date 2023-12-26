@@ -10,6 +10,8 @@ use crate::json_path::JSONPath;
 use crate::predicate::error::PredicateError;
 use crate::{FirstOrder, PredicateImpl};
 
+/// The "defined" predicate evaluates as true if the referenced element exists
+/// within the target context.
 #[derive(Debug, Builder, Clone, PartialEq, Eq)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Defined {
