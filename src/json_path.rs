@@ -50,7 +50,7 @@ impl Serialize for JSONPath {
         S: serde::Serializer,
     {
         let val = self.0.to_string();
-        Ok(serializer.serialize_str(&val)?)
+        serializer.serialize_str(&val)
     }
 }
 
@@ -60,7 +60,7 @@ impl Add for JSONPath {
     fn add(self, other: Self) -> Self::Output {
         // TODO: Fix it because it's an unwrap that shouldn't be here as we should be sure that it
         // works.
-        Self::new(format!("{}{}", self.0.to_string(), other.0.to_string())).unwrap()
+        Self::new(format!("{}{}", self.0, other.0)).unwrap()
     }
 }
 

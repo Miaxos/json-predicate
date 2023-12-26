@@ -10,11 +10,12 @@ use crate::json_path::JSONPath;
 use crate::predicate::error::PredicateError;
 use crate::{FirstOrder, PredicateImpl};
 
+/// The "defined" predicate evaluates as true if the referenced element exists
+/// within the target context.
 #[derive(Debug, Builder, Clone, PartialEq, Eq)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Defined {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
 }
@@ -120,7 +121,7 @@ impl<'de> Deserialize<'de> for Defined {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op"];
+        const FIELDS: &[&str] = &["path", "op"];
         Deserializer::deserialize_struct(
             deserializer,
             "Defined",
@@ -169,7 +170,7 @@ mod tests {
         });
 
         let defined = Defined {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
         };
 
         assert_eq!(serde_json::to_value(defined).unwrap(), defined_expect);
@@ -183,7 +184,7 @@ mod tests {
         });
 
         let defined = Defined {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
         };
 
         let deser = Defined::deserialize(defined_expect).unwrap();

@@ -12,11 +12,16 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The JSON Patch "test" operation, as defined by [RFC6902, Section 4.6](https://datatracker.ietf.org/doc/html/rfc6902#section-4.6),
+/// can be used as a First Order Predicate operation.
+/// It evaluates as true if the referenced element exists and specifies a value
+/// that is exactly equal to that provided by the predicate's "value" member.
+/// The rules for evaluating equality are identical to those defined within [RFC6902, Section 4.6](https://datatracker.ietf.org/doc/html/rfc6902#section-4.6),
+/// with one exception given for optional case-insensitive comparisons.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Test {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
     #[builder(default)]
@@ -150,7 +155,7 @@ impl<'de> Deserialize<'de> for Test {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Test",
@@ -200,7 +205,7 @@ mod tests {
         });
 
         let end = Test {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String("val".to_string()),
         };
@@ -217,7 +222,7 @@ mod tests {
         });
 
         let end = Test {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String("val".to_string()),
         };

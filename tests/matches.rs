@@ -30,7 +30,7 @@ pub fn test_base_predicate_snapshot() {
 pub fn returns_false_for_any_non_string_target_path() {
     let predicate: Predicate = FirstOrder::from(
         MatchesBuilder::default()
-            .path(JSONPath::new("/num1".to_owned()).unwrap())
+            .path(JSONPath::new("/num1").unwrap())
             .value(Regex::new("[\\w\\s]*").unwrap())
             .build()
             .unwrap(),
@@ -39,11 +39,11 @@ pub fn returns_false_for_any_non_string_target_path() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 
     let predicate: Predicate = FirstOrder::from(
         MatchesBuilder::default()
-            .path(JSONPath::new("/null1".to_owned()).unwrap())
+            .path(JSONPath::new("/null1").unwrap())
             .value(Regex::new("[\\w\\s]*").unwrap())
             .build()
             .unwrap(),
@@ -52,11 +52,11 @@ pub fn returns_false_for_any_non_string_target_path() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 
     let predicate: Predicate = FirstOrder::from(
         MatchesBuilder::default()
-            .path(JSONPath::new("/objA".to_owned()).unwrap())
+            .path(JSONPath::new("/objA").unwrap())
             .value(Regex::new("[\\w\\s]*").unwrap())
             .build()
             .unwrap(),
@@ -65,11 +65,11 @@ pub fn returns_false_for_any_non_string_target_path() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 
     let predicate: Predicate = FirstOrder::from(
         MatchesBuilder::default()
-            .path(JSONPath::new("/arrayA".to_owned()).unwrap())
+            .path(JSONPath::new("/arrayA").unwrap())
             .value(Regex::new("[\\w\\s]*").unwrap())
             .build()
             .unwrap(),
@@ -78,7 +78,7 @@ pub fn returns_false_for_any_non_string_target_path() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
@@ -124,7 +124,7 @@ pub fn returns_false_for_any_value_other_than_a_regexp_or_a_string() {
 pub fn returns_true_for_match_when_providing_string_that_will_become_regexp() {
     let predicate: Predicate = FirstOrder::from(
         MatchesBuilder::default()
-            .path(JSONPath::new("/stringABC".to_owned()).unwrap())
+            .path(JSONPath::new("/stringABC").unwrap())
             .value(Regex::new("[A-Z]*").unwrap())
             .build()
             .unwrap(),
@@ -133,14 +133,14 @@ pub fn returns_true_for_match_when_providing_string_that_will_become_regexp() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_true_for_different_case_string_with_ignore_case() {
     let predicate: Predicate = FirstOrder::from(
         MatchesBuilder::default()
-            .path(JSONPath::new("/stringABC".to_owned()).unwrap())
+            .path(JSONPath::new("/stringABC").unwrap())
             .value(Regex::new("aBc").unwrap())
             .ignore_case(true)
             .build()
@@ -150,14 +150,14 @@ pub fn returns_true_for_different_case_string_with_ignore_case() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_false_for_different_case_string_without_ignore_case_true() {
     let predicate: Predicate = FirstOrder::from(
         MatchesBuilder::default()
-            .path(JSONPath::new("/stringABC".to_owned()).unwrap())
+            .path(JSONPath::new("/stringABC").unwrap())
             .value(Regex::new("aBc").unwrap())
             .build()
             .unwrap(),
@@ -166,7 +166,7 @@ pub fn returns_false_for_different_case_string_without_ignore_case_true() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
@@ -186,7 +186,7 @@ pub fn returns_true_when_providing_matching_regexp_directly() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -202,7 +202,7 @@ pub fn returns_false_when_providing_matching_regex_with_mismatch_case() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
@@ -218,7 +218,7 @@ pub fn returns_true_when_providing_matching_i_regexp_without_mismatch_case() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -234,7 +234,7 @@ pub fn returns_true_when_providing_matching_i_regexp_with_mismatch_case() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]

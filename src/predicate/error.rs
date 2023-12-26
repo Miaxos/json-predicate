@@ -24,6 +24,7 @@ impl PredicateError {
 enum PredicateErrorKind {
     Unimplemented,
     /// The Predicate Object specifies an unknown predicate operation.
+    #[allow(dead_code)]
     UnknownPredicateOperation,
     /// The Predicate Object specifies a JSON Pointer referencing a value that
     /// does not exist and the specified Predicate operation is not
@@ -35,6 +36,7 @@ enum PredicateErrorKind {
     /// A First Order Predicate Object specifies a predicate operation that
     /// requires a "value" member providing the condition to test but no
     /// "value" member is provided.
+    #[allow(dead_code)]
     NoValueMember,
     /// The "value" member given for a given predicate operation is of an
     /// unexpected or unsupported type for that operation

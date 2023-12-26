@@ -10,11 +10,12 @@ use crate::json_path::JSONPath;
 use crate::predicate::error::PredicateError;
 use crate::{FirstOrder, PredicateImpl};
 
+/// The "undefined" predicate evaluates as true if the referenced element does
+/// not exist within the target context.
 #[derive(Debug, Builder, Clone, PartialEq, Eq)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Undefined {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
 }
@@ -120,7 +121,7 @@ impl<'de> Deserialize<'de> for Undefined {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op"];
+        const FIELDS: &[&str] = &["path", "op"];
         Deserializer::deserialize_struct(
             deserializer,
             "Undefined",
@@ -162,7 +163,7 @@ mod tests {
         });
 
         let undefined = Undefined {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
         };
 
         assert_eq!(serde_json::to_value(undefined).unwrap(), undefined_expect);
@@ -176,7 +177,7 @@ mod tests {
         });
 
         let undefined = Undefined {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
         };
 
         let deser = Undefined::deserialize(undefined_expect).unwrap();

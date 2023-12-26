@@ -12,11 +12,13 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "ends" predicate evaluates as true if the referenced element is defined
+/// and has a value whose string representation ends with the exact sequence of
+/// characters given by the predicate object's "value" member.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct End {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
     #[builder(default)]
@@ -150,7 +152,7 @@ impl<'de> Deserialize<'de> for End {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "End",
@@ -205,7 +207,7 @@ mod tests {
         });
 
         let end = End {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String(" is a ".to_string()),
         };
@@ -222,7 +224,7 @@ mod tests {
         });
 
         let end = End {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String(" is a ".to_string()),
         };

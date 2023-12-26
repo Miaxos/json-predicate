@@ -50,8 +50,9 @@ mod error;
 ///
 /// In addition to the required "op" member, First Order Predicates have
 /// exactly one "path" member whose value MUST be a string containing a
-/// JSON-Pointer [RFC6901] value referencing the name value pair that is
-/// to be tested.  If the "path" member is not specified within the
+/// JSON-Pointer [RFC6901](https://datatracker.ietf.org/doc/html/rfc6901)
+/// value referencing the name value pair that is to be tested.  If the
+/// "path" member is not specified within the
 /// predicate object, it's value is assumed to be an empty string.
 ///
 /// Second Order Predicates MUST have exactly one "apply" member whose
@@ -94,4 +95,9 @@ pub trait PredicateImpl {
     /// you have to assume it's a false result and you'll also have more information about why it
     /// didn't validate.
     fn evaluate(&self, data: &Value, ctx: PredicateContext) -> Result<bool, PredicateError>;
+
+    /// Evaluate the predicate against the provided JSON
+    fn test(&self, data: &Value, ctx: PredicateContext) -> bool {
+        self.evaluate(data, ctx).unwrap_or(false)
+    }
 }

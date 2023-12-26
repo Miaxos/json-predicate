@@ -27,7 +27,7 @@ pub fn test_base_predicate_snapshot() {
 pub fn returns_true_for_end_string_shallow() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/stringABC".to_owned()).unwrap())
+            .path(JSONPath::new("/stringABC").unwrap())
             .value("BC")
             .build()
             .unwrap(),
@@ -36,14 +36,14 @@ pub fn returns_true_for_end_string_shallow() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_false_for_non_ending_string_shallow() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/stringABC".to_owned()).unwrap())
+            .path(JSONPath::new("/stringABC").unwrap())
             .value("AB")
             .build()
             .unwrap(),
@@ -52,14 +52,14 @@ pub fn returns_false_for_non_ending_string_shallow() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn returns_true_for_end_string_deep() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/objA/objB/stringMNO".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/stringMNO").unwrap())
             .value("NO")
             .build()
             .unwrap(),
@@ -68,14 +68,14 @@ pub fn returns_true_for_end_string_deep() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_false_for_non_ending_string_deep() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/objA/stringXYZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/stringXYZ").unwrap())
             .value("XY")
             .build()
             .unwrap(),
@@ -84,14 +84,14 @@ pub fn returns_false_for_non_ending_string_deep() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn returns_false_for_mismatching() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/objA/stringXYZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/stringXYZ").unwrap())
             .value("yz")
             .build()
             .unwrap(),
@@ -100,14 +100,14 @@ pub fn returns_false_for_mismatching() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn honors_ignore_case() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/objA/stringXYZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/stringXYZ").unwrap())
             .value("yz")
             .ignore_case(true)
             .build()
@@ -117,14 +117,14 @@ pub fn honors_ignore_case() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_false_for_undefined_value() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/objZZZ/objZZZZZZZZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objZZZ/objZZZZZZZZ").unwrap())
             .value("does not matter")
             .build()
             .unwrap(),
@@ -139,7 +139,7 @@ pub fn returns_false_for_undefined_value() {
 pub fn returns_false_for_undefined_value_with_ignore_case() {
     let predicate: Predicate = FirstOrder::from(
         EndBuilder::default()
-            .path(JSONPath::new("/objZZZ/objZZZZZZZZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objZZZ/objZZZZZZZZ").unwrap())
             .value("does not matter")
             .ignore_case(true)
             .build()

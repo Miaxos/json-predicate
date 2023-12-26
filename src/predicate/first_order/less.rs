@@ -12,11 +12,13 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "less" predicate evaluates as true if the referenced element is defined
+/// and specifies a number whose value is less than that specified by the
+/// predicate object's "value" member.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Less {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
     pub value: Number,
@@ -134,7 +136,7 @@ impl<'de> Deserialize<'de> for Less {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Less",
@@ -185,7 +187,7 @@ mod tests {
         });
 
         let less = Less {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: Number::from(12),
         };
 
@@ -201,7 +203,7 @@ mod tests {
         });
 
         let less = Less {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: Number::from(12),
         };
 

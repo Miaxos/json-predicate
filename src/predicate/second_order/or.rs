@@ -13,11 +13,12 @@ use crate::Predicate;
 
 use super::SecondOrder;
 
+/// The "or" predicate evaluates as "true" if at least one of it's contained
+/// set of predicate operations evaluate as "true".
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Or {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     #[builder(default)]
     pub path: Option<JSONPath>,
@@ -136,7 +137,7 @@ impl<'de> Deserialize<'de> for Or {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["op", "apply", "path"];
+        const FIELDS: &[&str] = &["op", "apply", "path"];
         Deserializer::deserialize_struct(
             deserializer,
             "Or",

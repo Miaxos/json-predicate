@@ -12,11 +12,16 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "in" predicate evaluates as true if the referenced element specifies a
+/// value exactly equal to one of the members of a JSON array provided by the
+/// predicate's "value" member.  Equality is determined following the sames
+/// rules specified for the JSON Patch "test" operation in [RFC6901](https://datatracker.ietf.org/doc/html/rfc6901),
+/// Section 4.6, with one exception given for optional case-insensitive
+/// comparisons.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct In {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
     #[builder(default)]
@@ -151,7 +156,7 @@ impl<'de> Deserialize<'de> for In {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "In",
@@ -205,7 +210,7 @@ mod tests {
         });
 
         let end = In {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: vec![serde_json::Value::String("a".to_string())],
         };
@@ -222,7 +227,7 @@ mod tests {
         });
 
         let end = In {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: vec![serde_json::Value::String("a".to_string())],
         };

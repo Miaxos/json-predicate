@@ -1,5 +1,5 @@
 use derive_builder::Builder;
-use regex::{RegexBuilder, RegexSetBuilder};
+use regex::RegexBuilder;
 use serde_json::Value;
 use std::marker::PhantomData;
 
@@ -14,11 +14,13 @@ use crate::regex::Regex;
 
 use super::FirstOrder;
 
+/// The "matches" predicate evaluates as true if the referenced element is
+/// defined and has a value whose completely string representation matches the
+/// regular expression provided by the predicate object's "value" member.
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Matches {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
     #[builder(default)]
@@ -153,7 +155,7 @@ impl<'de> Deserialize<'de> for Matches {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Matches",
@@ -214,7 +216,7 @@ mod tests {
         });
 
         let matches = Matches {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: Regex::new(".*").unwrap().into(),
         };
@@ -231,7 +233,7 @@ mod tests {
         });
 
         let matches = Matches {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: Regex::new(".*").unwrap().into(),
         };

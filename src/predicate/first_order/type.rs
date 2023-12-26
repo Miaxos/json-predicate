@@ -16,11 +16,26 @@ use crate::predicate::PredicateImpl;
 
 use super::FirstOrder;
 
+/// The "type" predicate evaluates as true if the referenced element exists and
+/// specifies a value whose value type is equal to that specified by the
+/// predicate's "value" member.
+/// The "value" member MUST specify one of:
+/// - "number"
+/// - "string"
+/// - "boolean"
+/// - "object"
+/// - "array"
+/// - "null"
+/// - "undefined"
+/// - "date"
+/// - "date-time"
+/// - "time"
+/// - "lang"
+/// - "lang-range"
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Type {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
     pub value: String,
@@ -146,7 +161,7 @@ impl<'de> Deserialize<'de> for Type {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Type",
@@ -223,7 +238,6 @@ impl PredicateImpl for Type {
                 "absolute-iri" => Err(PredicateError::unimplemented()),
                 _ => Ok(context == value),
             },
-            _ => Ok(false),
         }
     }
 }
@@ -243,7 +257,7 @@ mod tests {
         });
 
         let ty = Type {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: "string".to_string(),
         };
 
@@ -259,7 +273,7 @@ mod tests {
         });
 
         let ty = Type {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: "string".to_string(),
         };
 
