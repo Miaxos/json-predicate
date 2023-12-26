@@ -13,8 +13,7 @@ use crate::{FirstOrder, PredicateImpl};
 #[derive(Debug, Builder, Clone, PartialEq, Eq)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Defined {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
 }

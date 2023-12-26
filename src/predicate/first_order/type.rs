@@ -19,8 +19,7 @@ use super::FirstOrder;
 #[derive(Debug, Clone, PartialEq, Eq, Builder)]
 #[builder(pattern = "owned", setter(into, strip_option))]
 pub struct Type {
-    /// Must be a JSON Pointer
-    /// https://tools.ietf.org/html/rfc6901
+    /// Must be a [JSON Pointer](https://tools.ietf.org/html/rfc6901)
     /// If the "path" member is not specified within the predicate object, it's value is assumed to be an empty string.
     pub path: Option<JSONPath>,
     pub value: String,
@@ -223,7 +222,6 @@ impl PredicateImpl for Type {
                 "absolute-iri" => Err(PredicateError::unimplemented()),
                 _ => Ok(context == value),
             },
-            _ => Ok(false),
         }
     }
 }
