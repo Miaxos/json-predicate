@@ -37,7 +37,7 @@ pub fn return_true_for_not_case_f_f_with_shallow_endpoint() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -61,7 +61,7 @@ pub fn return_true_for_not_case_f_f_with_deep_endpoint() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -86,7 +86,7 @@ pub fn return_false_for_not_case_t_f_and_compound_paths() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
@@ -115,7 +115,7 @@ pub fn return_false_for_or_case_t_f_t() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
@@ -140,7 +140,7 @@ pub fn return_true_for_not_case_f_f() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -156,5 +156,5 @@ pub fn returns_true_for_not_case_empty_array() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }

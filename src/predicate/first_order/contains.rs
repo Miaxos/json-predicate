@@ -153,7 +153,7 @@ impl<'de> Deserialize<'de> for Contains {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Contains",
@@ -212,7 +212,7 @@ mod tests {
         });
 
         let contains = Contains {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String(" is a ".to_string()),
         };
@@ -229,7 +229,7 @@ mod tests {
         });
 
         let contains = Contains {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String(" is a ".to_string()),
         };

@@ -134,7 +134,7 @@ impl<'de> Deserialize<'de> for Less {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Less",
@@ -185,7 +185,7 @@ mod tests {
         });
 
         let less = Less {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: Number::from(12),
         };
 
@@ -201,7 +201,7 @@ mod tests {
         });
 
         let less = Less {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: Number::from(12),
         };
 

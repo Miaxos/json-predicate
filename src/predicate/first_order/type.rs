@@ -146,7 +146,7 @@ impl<'de> Deserialize<'de> for Type {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Type",
@@ -243,7 +243,7 @@ mod tests {
         });
 
         let ty = Type {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: "string".to_string(),
         };
 
@@ -259,7 +259,7 @@ mod tests {
         });
 
         let ty = Type {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             value: "string".to_string(),
         };
 

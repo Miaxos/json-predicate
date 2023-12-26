@@ -1,5 +1,5 @@
 use derive_builder::Builder;
-use regex::{RegexBuilder, RegexSetBuilder};
+use regex::{RegexBuilder};
 use serde_json::Value;
 use std::marker::PhantomData;
 
@@ -153,7 +153,7 @@ impl<'de> Deserialize<'de> for Matches {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Matches",
@@ -214,7 +214,7 @@ mod tests {
         });
 
         let matches = Matches {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: Regex::new(".*").unwrap().into(),
         };
@@ -231,7 +231,7 @@ mod tests {
         });
 
         let matches = Matches {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: Regex::new(".*").unwrap().into(),
         };

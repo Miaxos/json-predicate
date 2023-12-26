@@ -150,7 +150,7 @@ impl<'de> Deserialize<'de> for Test {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op", "value"];
+        const FIELDS: &[&str] = &["path", "op", "value"];
         Deserializer::deserialize_struct(
             deserializer,
             "Test",
@@ -200,7 +200,7 @@ mod tests {
         });
 
         let end = Test {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String("val".to_string()),
         };
@@ -217,7 +217,7 @@ mod tests {
         });
 
         let end = Test {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
             ignore_case: false,
             value: serde_json::Value::String("val".to_string()),
         };

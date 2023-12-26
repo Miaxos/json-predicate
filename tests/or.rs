@@ -2,7 +2,7 @@
 
 use json_predicate::builder::OrBuilder;
 use json_predicate::context::PredicateContext;
-use json_predicate::json_path::JSONPath;
+
 use json_predicate::{Predicate, PredicateImpl, SecondOrder};
 
 mod utils;
@@ -38,7 +38,7 @@ pub fn return_true_for_or_case_with_shallow_endpoint() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -62,7 +62,7 @@ pub fn return_true_for_or_case_with_deep_endpoint() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -87,7 +87,7 @@ pub fn returns_true_for_or_case_with_t_t_and_compound_paths() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -116,7 +116,7 @@ pub fn returns_true_for_or_case_with_t_f_t() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
@@ -141,7 +141,7 @@ pub fn returns_false_for_or_case_with_f_f() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
@@ -157,5 +157,5 @@ pub fn returns_true_for_or_case_empty_array() {
         .unwrap()
         .evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }

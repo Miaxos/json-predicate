@@ -66,7 +66,7 @@ pub fn returns_err_for_non_numeric_comparaisons() {
 pub fn returns_true_for_greater_predicate_value() {
     let predicate: Predicate = FirstOrder::from(
         LessBuilder::default()
-            .path(JSONPath::new("/objA/objB/num3".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/num3").unwrap())
             .value(4)
             .build()
             .unwrap(),
@@ -75,14 +75,14 @@ pub fn returns_true_for_greater_predicate_value() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_false_for_lesser_predicate_value() {
     let predicate: Predicate = FirstOrder::from(
         LessBuilder::default()
-            .path(JSONPath::new("/objA/objB/num3".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/num3").unwrap())
             .value(2)
             .build()
             .unwrap(),
@@ -91,14 +91,14 @@ pub fn returns_false_for_lesser_predicate_value() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn returns_false_for_equal_numeric_value() {
     let predicate: Predicate = FirstOrder::from(
         LessBuilder::default()
-            .path(JSONPath::new("/objA/objB/num3".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/num3").unwrap())
             .value(3)
             .build()
             .unwrap(),
@@ -107,14 +107,14 @@ pub fn returns_false_for_equal_numeric_value() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn returns_err_for_undefined_value() {
     let predicate: Predicate = FirstOrder::from(
         LessBuilder::default()
-            .path(JSONPath::new("/objZZZ/objZZZZZZZZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objZZZ/objZZZZZZZZ").unwrap())
             .value(3)
             .build()
             .unwrap(),

@@ -27,7 +27,7 @@ pub fn test_base_predicate_snapshot() {
 pub fn return_true_contained_string() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/stringABC".to_owned()).unwrap())
+            .path(JSONPath::new("/stringABC").unwrap())
             .value("AB")
             .ignore_case(false)
             .build()
@@ -44,7 +44,7 @@ pub fn return_true_contained_string() {
 pub fn return_false_for_non_contained_string() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/stringABC".to_owned()).unwrap())
+            .path(JSONPath::new("/stringABC").unwrap())
             .value("XY")
             .ignore_case(false)
             .build()
@@ -54,14 +54,14 @@ pub fn return_false_for_non_contained_string() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn return_true_for_contained_string() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/objA/objB/stringMNO".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/stringMNO").unwrap())
             .value("MN")
             .ignore_case(false)
             .build()
@@ -71,14 +71,14 @@ pub fn return_true_for_contained_string() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn return_false_for_non_contained_string_deep() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/objA/stringXYZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/stringXYZ").unwrap())
             .value("AB")
             .ignore_case(false)
             .build()
@@ -88,14 +88,14 @@ pub fn return_false_for_non_contained_string_deep() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn return_false_for_mismatching_case() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/objA/stringXYZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/stringXYZ").unwrap())
             .value("xy")
             .ignore_case(false)
             .build()
@@ -105,14 +105,14 @@ pub fn return_false_for_mismatching_case() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), false);
+    assert!(!result.unwrap());
 }
 
 #[test]
 pub fn return_err_for_undefined_value() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/objZZZ/objZZZZZZZZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objZZZ/objZZZZZZZZ").unwrap())
             .value("does not matter")
             .ignore_case(false)
             .build()
@@ -129,7 +129,7 @@ pub fn return_err_for_undefined_value() {
 pub fn return_false_for_undefined_value_ignore_case() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/objZZZ/objZZZZZZZZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objZZZ/objZZZZZZZZ").unwrap())
             .ignore_case(true)
             .value("does not matter")
             .build()
@@ -146,7 +146,7 @@ pub fn return_false_for_undefined_value_ignore_case() {
 pub fn honors_ignore_case() {
     let predicate: Predicate = FirstOrder::from(
         ContainsBuilder::default()
-            .path(JSONPath::new("/objA/stringXYZ".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/stringXYZ").unwrap())
             .ignore_case(true)
             .value("xy")
             .build()
@@ -156,5 +156,5 @@ pub fn honors_ignore_case() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }

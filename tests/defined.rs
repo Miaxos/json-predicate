@@ -25,7 +25,7 @@ pub fn test_base_predicate_snapshot() {
 pub fn returns_true_for_existing_key_shallow() {
     let predicate: Predicate = FirstOrder::from(
         DefinedBuilder::default()
-            .path(JSONPath::new("/num1".to_owned()).unwrap())
+            .path(JSONPath::new("/num1").unwrap())
             .build()
             .unwrap(),
     )
@@ -33,14 +33,14 @@ pub fn returns_true_for_existing_key_shallow() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_true_for_existing_key_with_null_value() {
     let predicate: Predicate = FirstOrder::from(
         DefinedBuilder::default()
-            .path(JSONPath::new("/null1".to_owned()).unwrap())
+            .path(JSONPath::new("/null1").unwrap())
             .build()
             .unwrap(),
     )
@@ -48,14 +48,14 @@ pub fn returns_true_for_existing_key_with_null_value() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_err_for_non_existent_key_shallow() {
     let predicate: Predicate = FirstOrder::from(
         DefinedBuilder::default()
-            .path(JSONPath::new("/not_a_key".to_owned()).unwrap())
+            .path(JSONPath::new("/not_a_key").unwrap())
             .build()
             .unwrap(),
     )
@@ -69,7 +69,7 @@ pub fn returns_err_for_non_existent_key_shallow() {
 pub fn returns_true_for_existing_key_deep() {
     let predicate: Predicate = FirstOrder::from(
         DefinedBuilder::default()
-            .path(JSONPath::new("/objA/objB/num3".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/num3").unwrap())
             .build()
             .unwrap(),
     )
@@ -77,14 +77,14 @@ pub fn returns_true_for_existing_key_deep() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_true_for_existing_key_with_null_value_deep() {
     let predicate: Predicate = FirstOrder::from(
         DefinedBuilder::default()
-            .path(JSONPath::new("/objA/objB/null3".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/null3").unwrap())
             .build()
             .unwrap(),
     )
@@ -92,14 +92,14 @@ pub fn returns_true_for_existing_key_with_null_value_deep() {
 
     let result = predicate.evaluate(&ENTRY, PredicateContext::default());
     assert!(result.is_ok());
-    assert_eq!(result.unwrap(), true);
+    assert!(result.unwrap());
 }
 
 #[test]
 pub fn returns_err_for_non_existent_key_deep() {
     let predicate: Predicate = FirstOrder::from(
         DefinedBuilder::default()
-            .path(JSONPath::new("/objA/objB/not_a_key".to_owned()).unwrap())
+            .path(JSONPath::new("/objA/objB/not_a_key").unwrap())
             .build()
             .unwrap(),
     )

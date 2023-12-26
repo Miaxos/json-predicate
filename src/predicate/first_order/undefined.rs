@@ -120,7 +120,7 @@ impl<'de> Deserialize<'de> for Undefined {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["path", "op"];
+        const FIELDS: &[&str] = &["path", "op"];
         Deserializer::deserialize_struct(
             deserializer,
             "Undefined",
@@ -162,7 +162,7 @@ mod tests {
         });
 
         let undefined = Undefined {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
         };
 
         assert_eq!(serde_json::to_value(undefined).unwrap(), undefined_expect);
@@ -176,7 +176,7 @@ mod tests {
         });
 
         let undefined = Undefined {
-            path: Some(JSONPath::new("/a/b".to_string()).unwrap()),
+            path: Some(JSONPath::new("/a/b").unwrap()),
         };
 
         let deser = Undefined::deserialize(undefined_expect).unwrap();

@@ -136,7 +136,7 @@ impl<'de> Deserialize<'de> for Or {
             }
         }
 
-        const FIELDS: &'static [&'static str] = &["op", "apply", "path"];
+        const FIELDS: &[&str] = &["op", "apply", "path"];
         Deserializer::deserialize_struct(
             deserializer,
             "Or",
