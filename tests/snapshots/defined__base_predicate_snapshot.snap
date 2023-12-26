@@ -1,0 +1,9 @@
+---
+source: tests/defined.rs
+expression: predicate
+
+---
+{
+  "op": "defined",
+  "path": "/stringABC"
+}

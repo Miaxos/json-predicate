@@ -1,0 +1,10 @@
+---
+source: tests/contains.rs
+expression: predicate
+
+---
+{
+  "op": "contains",
+  "path": "/stringABC",
+  "value": "AB"
+}

@@ -1,0 +1,10 @@
+---
+source: tests/less.rs
+expression: predicate
+
+---
+{
+  "op": "less",
+  "path": "/stringABC",
+  "value": 12
+}

@@ -1,0 +1,10 @@
+---
+source: tests/end.rs
+expression: predicate
+
+---
+{
+  "op": "end",
+  "path": "/stringABC",
+  "value": "AB"
+}

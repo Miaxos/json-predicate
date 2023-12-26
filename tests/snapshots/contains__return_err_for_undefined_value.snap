@@ -1,0 +1,6 @@
+---
+source: tests/contains.rs
+expression: result.unwrap_err()
+
+---
+The pointer pointed to a nonexistent key, pointed key: objZZZ

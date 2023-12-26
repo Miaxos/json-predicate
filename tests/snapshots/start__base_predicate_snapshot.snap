@@ -1,0 +1,10 @@
+---
+source: tests/start.rs
+expression: predicate
+
+---
+{
+  "op": "start",
+  "path": "/stringABC",
+  "value": "AB"
+}

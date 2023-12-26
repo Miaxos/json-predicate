@@ -1,0 +1,10 @@
+---
+source: tests/and.rs
+expression: predicate
+
+---
+{
+  "op": "and",
+  "path": null,
+  "apply": []
+}

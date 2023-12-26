@@ -1,0 +1,12 @@
+---
+source: tests/in.rs
+expression: predicate
+
+---
+{
+  "op": "in",
+  "path": "/stringABC",
+  "value": [
+    "AB"
+  ]
+}

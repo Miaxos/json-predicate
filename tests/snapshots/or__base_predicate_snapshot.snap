@@ -1,0 +1,10 @@
+---
+source: tests/or.rs
+expression: predicate
+
+---
+{
+  "op": "or",
+  "path": null,
+  "apply": []
+}

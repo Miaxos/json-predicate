@@ -1,0 +1,10 @@
+---
+source: tests/type.rs
+expression: predicate
+
+---
+{
+  "op": "type",
+  "path": "/stringABC",
+  "value": "string"
+}

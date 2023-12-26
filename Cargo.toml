@@ -1,0 +1,22 @@
+[package]
+name = "json-predicate"
+version = "0.1.0"
+authors = ["Anthony Griffon <anthony@griffon.one>"]
+edition = "2021"
+
+[dependencies]
+derive_builder = "0.12"
+fluent-langneg = "0.14"
+langtag = "0.3"
+serde = {version = "1", features = ["derive"] }
+serde_json = "1"
+json-pointer = "0.3"
+thiserror = "1"
+chrono = "0.4.24"
+chrono-tz = "0.8"
+iso8601 = "0.6"
+regex = "1.10"
+
+[dev-dependencies]
+insta = "1"                   # A snapshot testing library for Rust
+lazy_static = "1.4"            # A macro for declaring lazily evaluated statics in Rust.

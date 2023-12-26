@@ -1,0 +1,10 @@
+---
+source: tests/not.rs
+expression: predicate
+
+---
+{
+  "op": "not",
+  "path": null,
+  "apply": []
+}

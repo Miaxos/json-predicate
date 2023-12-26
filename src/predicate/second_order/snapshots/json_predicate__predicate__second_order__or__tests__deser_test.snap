@@ -1,0 +1,20 @@
+---
+source: src/predicate/second_order/or.rs
+expression: deser
+
+---
+{
+  "op": "or",
+  "path": null,
+  "apply": [
+    {
+      "op": "defined",
+      "path": "/a/b"
+    },
+    {
+      "op": "less",
+      "path": "/a/c/d",
+      "value": 15
+    }
+  ]
+}

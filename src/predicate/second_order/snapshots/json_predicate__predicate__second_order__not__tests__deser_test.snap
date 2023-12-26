@@ -1,0 +1,20 @@
+---
+source: src/predicate/second_order/not.rs
+expression: deser
+
+---
+{
+  "op": "not",
+  "path": null,
+  "apply": [
+    {
+      "op": "defined",
+      "path": "/a/b"
+    },
+    {
+      "op": "less",
+      "path": "/a/c/d",
+      "value": 15
+    }
+  ]
+}

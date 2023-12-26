@@ -1,0 +1,9 @@
+---
+source: tests/undefined.rs
+expression: predicate
+
+---
+{
+  "op": "undefined",
+  "path": "/stringABC"
+}

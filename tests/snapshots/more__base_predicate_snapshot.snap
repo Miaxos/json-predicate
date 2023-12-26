@@ -1,0 +1,10 @@
+---
+source: tests/more.rs
+expression: predicate
+
+---
+{
+  "op": "more",
+  "path": "/stringABC",
+  "value": 12
+}
