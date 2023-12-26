@@ -3,6 +3,10 @@ name = "json-predicate"
 version = "0.1.0"
 authors = ["Anthony Griffon <anthony@griffon.one>"]
 edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "JSON Predicate lib based on draft-snell-json-07"
+repository = "https://github.com/Miaxos/json-predicate"
+
 
 [dependencies]
 derive_builder = "0.12"
