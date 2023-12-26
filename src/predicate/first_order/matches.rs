@@ -1,5 +1,5 @@
 use derive_builder::Builder;
-use regex::{RegexBuilder};
+use regex::RegexBuilder;
 use serde_json::Value;
 use std::marker::PhantomData;
 
