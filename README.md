@@ -1,5 +1,11 @@
 # JSON Predicate
 
+[![release](https://github.com/Miaxos/json-predicate/actions/workflows/release.yml/badge.svg)](https://github.com/Miaxos/json-predicate/actions/workflows/release.yml)
+[![Crates.io version](https://img.shields.io/crates/v/json-predicate.svg)](https://crates.io/crates/json-predicate)
+[![dependency status](https://deps.rs/repo/github/miaxos/json-predicate/status.svg)](https://deps.rs/repo/github/miaxos/json-predicate)
+[![docs.rs docs](https://img.shields.io/badge/docs-latest-blue.svg)](https://docs.rs/json-predicate)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/miaxos/json-predicate/compare)
+
 Partial implementation of [Snell Json Predicate Draft
 07](https://tools.ietf.org/html/draft-snell-json-test-07).
 
