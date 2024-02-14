@@ -10,7 +10,7 @@ documentation = "https://docs.rs/json-predicate/latest/json_predicate/"
 
 
 [dependencies]
-derive_builder = "0.13"
+derive_builder = "0.20"
 fluent-langneg = "0.14"
 langtag = "0.3"
 serde = {version = "1", features = ["derive"] }
