@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.13](https://github.com/Miaxos/json-predicate/compare/v0.1.12...v0.1.13) - 2024-02-15
+
+### Fixed
+- *(deps)* update rust crate derive_builder to 0.20
+
 ## [0.1.12](https://github.com/Miaxos/json-predicate/compare/v0.1.11...v0.1.12) - 2024-02-13
 
 ### Other
