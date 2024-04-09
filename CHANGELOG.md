@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.17](https://github.com/Miaxos/json-predicate/compare/v0.1.16...v0.1.17) - 2024-04-09
+
+### Fixed
+- *(deps)* update rust crate chrono-tz to 0.9
+
 ## [0.1.16](https://github.com/Miaxos/json-predicate/compare/v0.1.15...v0.1.16) - 2024-03-29
 
 ### Fixed
