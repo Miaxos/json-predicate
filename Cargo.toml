@@ -23,5 +23,5 @@ iso8601 = "0.6"
 regex = "1.10"
 
 [dev-dependencies]
-insta = "1"                   # A snapshot testing library for Rust
+insta = "1.38.0"                   # A snapshot testing library for Rust
 lazy_static = "1.4"            # A macro for declaring lazily evaluated statics in Rust.
