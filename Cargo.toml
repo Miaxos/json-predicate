@@ -19,7 +19,7 @@ json-pointer = "0.3"
 thiserror = "1"
 chrono = "0.4.37"
 chrono-tz = "0.9"
-iso8601 = "0.6"
+iso8601 = "0.6.1"
 regex = "1.10"
 
 [dev-dependencies]
