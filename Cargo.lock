@@ -199,9 +199,9 @@ checksum = "a357d28ed41a50f9c765dbfe56cbc04a64e53e5fc58ba79fbc34c10ef3df831f"
 
 [[package]]
 name = "fluent-langneg"
-version = "0.14.0"
+version = "0.14.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0a56f2b85e609878e71a22e16b2a8c5b9de24c3d5a1c780536f3800a6a114b07"
+checksum = "e7b2da3cb6583f7e5f98d3e0e1f9ff70451398037445c8e89a0dc51594cf1736"
 dependencies = [
  "icu_locid",
 ]
